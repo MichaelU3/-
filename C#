@@ -8,6 +8,14 @@ private、 protected、 public、 internal 修饰符的访问权限:
 >>>>使用关键字sealed
 
 一列数的规则如下: 1、1、2、3、5、8、13、21、34...... 求第30位数是多少， 用递归算法实现:
+>>>>func(30);
+>>>>func(n){
+        if(n <= 0) return 0;
+        else if(n>0 && n<3) return 1;
+        else{
+                return func(n-1) + func(n-2);
+        }
+    }
 
 C#中的委托是什么？事件是不是一种委托:
 
