@@ -8,3 +8,37 @@
   7.For循环必须使用大括号
   8.If语句必须使用大括号
   9.for-in循环中的变量 应该使用var关键字明确限定作用域，从而避免作用域污染。
+
+eval是做什么的？
+  它的功能是把对应的字符串解析成JS代码并运行；
+  应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。
+  
+谈谈This对象的理解。
+  this是js的一个关键字，随着函数使用场合不同，this的值会发生变化。
+   
+  但是有一个总原则，那就是this指的是调用函数的那个对象。
+   
+  this一般情况下：是全局对象Global。 作为方法调用，那么this就是指这个对象
+  
+new操作符具体干了什么呢?
+    1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
+    2、属性和方法被加入到 this 引用的对象中。
+    3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。
+ 
+  var obj  = {};
+  obj.__proto__ = Base.prototype;
+  Base.call(obj);
+  
+js延迟加载的方式有哪些？
+  defer和async、动态创建DOM方式（用得最多）、按需异步载入js
+  
+针对 jQuery 的优化方法？
+  *基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。
+   
+  *频繁操作的DOM，先缓存起来再操作。用Jquery的链式调用更好。
+   比如：var str=$("a").attr("href");
+   
+  *for (var i = size; i < arr.length; i++) {}
+   for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：
+   for (var i = size, length = arr.length; i < length; i++) {}
+   
