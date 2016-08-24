@@ -25,8 +25,13 @@ new操作符具体干了什么呢?
     2、属性和方法被加入到 this 引用的对象中。
     3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。
  
-  var obj  = {};
-  obj.__proto__ = Base.prototype;
+body中的onload()函数和jQuery中的document.ready()有什么区别？
+
+  1、我们可以在页面中使用多个document.ready()，但只能使用一次onload()。
+  
+  2、document.ready()函数在页面DOM元素加载完以后就会被调用，而onload()函数则要在所有的关联资源（包括图像、音频）加载完毕后才会调用。
+    var obj  = {};
+    obj.__proto__ = Base.prototype;
   Base.call(obj);
   
 js延迟加载的方式有哪些？
