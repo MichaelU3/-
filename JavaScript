@@ -47,3 +47,60 @@ js延迟加载的方式有哪些？
    for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：
    for (var i = size, length = arr.length; i < length; i++) {}
    
+解释下事件代理。
+  JavaScript事件代理则是一种简单的技巧，通过它你可以把事件处理器添加到一个父级元素上，这样就避免了把事件处理器添加到多个子级元素上。当我们需要对很多元素添加事件的时候，可以通过将事件添加到它们的父节点而将事件委托给父节点来触发处理函数。这主要得益于浏览器的事件冒泡机制。事件代理用到了两个在JavaSciprt事件中常被忽略的特性：事件冒泡以及目标元素。
+  
+  function getEventTarget(e) {
+      e=e||window.event;
+      return e.target||e.srcElement;
+  }
+  
+解释下原型继承的原理。
+  以下代码展示了JS引擎如何查找属性：
+  
+  复制代码
+  function getProperty(obj,prop) {
+     if (obj.hasOwnProperty(prop)) {
+         return obj[prop];
+     } else if (obj.__proto__!==null) {
+         return getProperty(obj.__proto__,prop);
+     } else {
+         return undefined;
+     }
+  }
+  
+请指出$和$.fn的区别，或者说出$.fn的用途。
+  Jquery为开发插件提供了两个方法，分别是：
+  
+  1 $.extend(obj);
+  2 $.fn.extend(obj);
+  
+  1.那么这两个分别是什么意思？
+  $.extend(obj);是为了扩展jquery本身，为类添加新的方法。
+  $.fn.extend(obj);给JQUERY对象添加方法。
+  
+  2.$.fn中的fn是什么意思，其实是prototype，即$.fn=$.prototype;
+  具体用法请看下面的例子：
+  
+  $.extend({
+     add:function(a, b) {
+         return a+b;
+     }
+  })
+  $.add(5,8); // return 13
+  
+  注意没有，这边的调用直接调用，前面不用任何对象。直接$.+方法名
+  
+  $.fn.extend(obj)；对prototype进行扩展，为jquery类添加成员函数，jquery类的实例可以使用这个成员函数。
+   $.fn.extend({
+       clickwhile:function(){
+   
+           $(this).click(function(){
+               alert($(this).val())
+           })
+       }
+   })
+   $('input').clickwhile(); // 当点击输入框会弹出该对象的Value值
+
+  注意调用时候前面是有对象的。即$('input')这么个东西。
+
